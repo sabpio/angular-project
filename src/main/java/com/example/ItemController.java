@@ -1,5 +1,7 @@
 package com.example;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -13,6 +15,11 @@ public class ItemController {
 
 	@Autowired
 	private ItemRepository itemRepository;
+
+	@RequestMapping(method = RequestMethod.GET)
+	public List<Item> findItems() {
+		return itemRepository.findAll();
+	}
 
 	@RequestMapping(method = RequestMethod.POST)
 	public Item addItem(@RequestBody Item item) {
